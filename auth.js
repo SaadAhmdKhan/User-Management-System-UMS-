@@ -18,6 +18,11 @@ async function signUp(){
         if(error) throw error
         if(data){
             alert("Please Check Your Email For Confirmation")
+            // if(email.isConfirmed){
+            //     setTimeout(function () {
+            //         window.location.href = 'login.html'
+            // }, 2000);
+            // }
         }
         return data
     } catch (error) {
@@ -38,7 +43,13 @@ async function login(){
         if(error) throw error
         if(data){
             console.log(data)
-            alert("loginsuccess")
+            Swal.fire({
+                title: "Login Succesfully",
+                icon: "success",
+            }); 
+            setTimeout(function () {
+                window.location.href = "dashbord.html";
+            }, 2000);
         }
         return data
         } catch (error) {
@@ -49,11 +60,11 @@ async function login(){
 
 async function checkSession(){
     try {
-        const {data , error} = await supabase.auth.getSession()
-        if(data){
+        const { data, error } = await supabase.auth.GettSession()
+        if(data) {
             console.log(data)
-        }
-        if (error) throw error
+        } 
+        if(error) throw error
     } catch (error) {
         console.log(error)
     }
